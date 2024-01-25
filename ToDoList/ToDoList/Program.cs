@@ -1,10 +1,27 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using ToDoList.Models;
+using ToDoList.Models.Enums;
+using Task = ToDoList.Models.Task;
 
+Task task1 = new("AA task", "another task with same deadline and priority as task 2 \nand different creation date", DateTime.Now, DateTime.Now.AddDays(2), Priority.LowPriority);
+Task task2 = new("A task", "another task with same deadline as task 1 and less priority", DateTime.Now, DateTime.Now.AddDays(2), Priority.LowPriority);
+Task task3 = new("Clean your laptop", "its about 1 month you have not cleaned your laptop!", DateTime.Now, DateTime.Now.AddDays(2), Priority.HighPriority);
+Task task4 = new("Go to the dentist", "your theeth need to be checked", DateTime.Now, DateTime.Now.AddDays(7), Priority.LowPriority);
+Task task5 = new("DB homework", "the final project, phase 2", DateTime.Now, DateTime.Now.AddDays(3), Priority.Neutral);
+Task task6 = new("Reconcile eith your friend", "you know the right thing to do", DateTime.Now, DateTime.Now.AddDays(1), Priority.Critical);
 
-DateTime d1 = new DateTime(638418256350515030); // today
-DateTime d2 = new DateTime(638417392912518866); // yesterday
+TheList myList = new();
+myList.AddTask(task1);
+myList.AddTask(task2);
+myList.AddTask(task3);
+myList.AddTask(task4);
+myList.AddTask(task5);
+myList.AddTask(task6);
 
-Console.WriteLine(d1);
-Console.WriteLine(d2);
-Console.WriteLine(d1.CompareTo(d2));
+Console.WriteLine(myList.ToString());
+
+Console.WriteLine("After Sorting:\n");
+
+Console.WriteLine(myList.GetSortedString());
+
+myList.DoTask(task2);
+myList.RemoveTask(task3);
