@@ -4,7 +4,7 @@ namespace ToDoList.Models
 {
     public class Task : IComparable<Task>
     {
-        protected static int _counter = 0;
+        protected static int _counter = 1;
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -31,6 +31,11 @@ namespace ToDoList.Models
                 return Deadline.CompareTo(other.Deadline);
 
             return other.Priority.CompareTo(Priority);
+        }
+
+        public override string ToString()
+        {
+            return $"{Id} | {Priority} | {Title} | Due: {Deadline}\n  - {Description}\n    Created at: {CreationDate}";
         }
     }
 }
