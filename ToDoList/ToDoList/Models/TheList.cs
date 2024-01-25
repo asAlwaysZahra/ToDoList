@@ -1,8 +1,10 @@
-﻿namespace ToDoList.Models
+﻿using System.Text;
+
+namespace ToDoList.Models
 {
     internal class TheList
     {
-        protected static int _counter = 0;
+        protected static int _counter = 1;
         public int Id { get; set; }
         public List<Task> Tasks { get; set; }
         public List<Task> Done { get; set; }
@@ -29,6 +31,31 @@
             List<Task> sorted = new List<Task>(Tasks);
             sorted.Sort();
             return sorted;
+        }
+
+        public string GetSortedString()
+        {
+            List<Task> sorted = SortTasks();
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var task in sorted)
+            {
+                sb.Append(task.ToString()).Append("\n============\n");
+            }
+
+            return sb.ToString();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach(var task in Tasks)
+            {
+                sb.Append(task.ToString()).Append("\n============\n");
+            }
+
+            return sb.ToString();
         }
     }
 }
