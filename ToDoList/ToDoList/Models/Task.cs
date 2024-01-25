@@ -22,6 +22,15 @@ namespace ToDoList.Models
             Priority = priority;
         }
 
-        public int CompareTo(Task? other) => other.Priority.CompareTo(Priority);
+        public int CompareTo(Task? other)
+        {
+            if (other == null)
+                throw new ArgumentNullException("other task is null!");
+
+            if (Deadline != other.Deadline) 
+                return Deadline.CompareTo(other.Deadline);
+
+            return other.Priority.CompareTo(Priority);
+        }
     }
 }
