@@ -30,7 +30,11 @@ namespace ToDoList.Models
             if (Deadline != other.Deadline) 
                 return Deadline.CompareTo(other.Deadline);
 
-            return other.Priority.CompareTo(Priority);
+            if (Priority != other.Priority)
+                return other.Priority.CompareTo(Priority);
+
+            // the one that has been created earlier, has more priority
+            return CreationDate.CompareTo(other.CreationDate);
         }
 
         public override string ToString()
