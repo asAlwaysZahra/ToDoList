@@ -1,12 +1,11 @@
-﻿namespace ToDoList.Models.Enums
+﻿namespace ToDoList.Models.Enums;
+
+// lower number shows more importance
+public enum Priority
 {
-    // lower number shows more importance
-    public enum Priority
-    {
-        Critical = 1,
-        HighPriority,
-        Neutral,
-        LowPriority,
-        Unknown
-    }
+    Critical = 1,
+    HighPriority,
+    Neutral,
+    LowPriority,
+    Unknown
 }
