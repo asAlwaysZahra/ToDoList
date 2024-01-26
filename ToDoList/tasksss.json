@@ -1,0 +1,274 @@
+﻿[
+  {
+    "Id": 1,
+    "Title": "Prepare client presentation",
+    "Description": "Compile data and create a presentation for an upcoming client meeting",
+    "CreationDate": "2024-01-26T03:53:15.0727792+03:30",
+    "Deadline": "2024-01-28T03:53:15.0641024+03:30",
+    "Priority": 2
+  },
+  {
+    "Id": 2,
+    "Title": "Review project timeline",
+    "Description": "Evaluate the current project timeline and identify potential adjustments",
+    "CreationDate": "2024-01-26T03:53:15.0729293+03:30",
+    "Deadline": "2024-01-31T03:53:15.0729265+03:30",
+    "Priority": 1
+  },
+  {
+    "Id": 3,
+    "Title": "Attend team sprint planning",
+    "Description": "Participate in the sprint planning meeting to discuss upcoming tasks",
+    "CreationDate": "2024-01-26T03:53:15.0729298+03:30",
+    "Deadline": "2024-01-29T03:53:15.0729297+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 4,
+    "Title": "Conduct user testing",
+    "Description": "Coordinate and conduct user testing for the latest software release",
+    "CreationDate": "2024-01-26T03:53:15.0729302+03:30",
+    "Deadline": "2024-02-02T03:53:15.0729299+03:30",
+    "Priority": 2
+  },
+  {
+    "Id": 5,
+    "Title": "Submit expense reports",
+    "Description": "Compile and submit expense reports for the past month",
+    "CreationDate": "2024-01-26T03:53:15.0729306+03:30",
+    "Deadline": "2024-01-30T03:53:15.0729303+03:30",
+    "Priority": 4
+  },
+  {
+    "Id": 6,
+    "Title": "Prepare for board meeting",
+    "Description": "Gather and organize materials for an upcoming board meeting",
+    "CreationDate": "2024-01-26T03:53:15.0729333+03:30",
+    "Deadline": "2024-02-05T03:53:15.0729332+03:30",
+    "Priority": 2
+  },
+  {
+    "Id": 7,
+    "Title": "Review and update documentation",
+    "Description": "Update project documentation to reflect recent changes and improvements",
+    "CreationDate": "2024-01-26T03:53:15.0729337+03:30",
+    "Deadline": "2024-02-01T03:53:15.0729336+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 8,
+    "Title": "Plan team-building activity",
+    "Description": "Coordinate a team-building activity to enhance team collaboration",
+    "CreationDate": "2024-01-26T03:53:15.0729341+03:30",
+    "Deadline": "2024-02-04T03:53:15.0729338+03:30",
+    "Priority": 1
+  },
+  {
+    "Id": 9,
+    "Title": "Research industry trends",
+    "Description": "Stay informed about current industry trends and developments",
+    "CreationDate": "2024-01-26T03:53:15.0729343+03:30",
+    "Deadline": "2024-01-28T03:53:15.0729342+03:30",
+    "Priority": 4
+  },
+  {
+    "Id": 10,
+    "Title": "Respond to urgent client email",
+    "Description": "Address and respond to an urgent email from a key client",
+    "CreationDate": "2024-01-26T03:53:15.0729348+03:30",
+    "Deadline": "2024-01-27T03:53:15.0729346+03:30",
+    "Priority": 1
+  },
+  {
+    "Id": 11,
+    "Title": "Update marketing materials",
+    "Description": "Revise and update marketing materials for an upcoming product launch",
+    "CreationDate": "2024-01-26T03:53:15.0729355+03:30",
+    "Deadline": "2024-02-03T03:53:15.072935+03:30",
+    "Priority": 2
+  },
+  {
+    "Id": 12,
+    "Title": "Participate in training session",
+    "Description": "Attend a training session to enhance skills relevant to the current project",
+    "CreationDate": "2024-01-26T03:53:15.0729358+03:30",
+    "Deadline": "2024-01-31T03:53:15.0729356+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 13,
+    "Title": "Organize team retrospective",
+    "Description": "Facilitate a team retrospective to evaluate the last project iteration",
+    "CreationDate": "2024-01-26T03:53:15.0729361+03:30",
+    "Deadline": "2024-02-02T03:53:15.0729359+03:30",
+    "Priority": 5
+  },
+  {
+    "Id": 14,
+    "Title": "Schedule team progress review",
+    "Description": "Coordinate a team meeting to review progress and address challenges",
+    "CreationDate": "2024-01-26T03:53:15.0729364+03:30",
+    "Deadline": "2024-01-29T03:53:15.0729362+03:30",
+    "Priority": 4
+  },
+  {
+    "Id": 15,
+    "Title": "Conduct code review",
+    "Description": "Review code submissions from team members and provide feedback",
+    "CreationDate": "2024-01-26T03:53:15.0729369+03:30",
+    "Deadline": "2024-02-01T03:53:15.0729366+03:30",
+    "Priority": 5
+  },
+  {
+    "Id": 16,
+    "Title": "Prepare for upcoming conference",
+    "Description": "Organize materials and plan logistics for an upcoming industry conference",
+    "CreationDate": "2024-01-26T03:53:15.0729371+03:30",
+    "Deadline": "2024-02-09T03:53:15.072937+03:30",
+    "Priority": 1
+  },
+  {
+    "Id": 17,
+    "Title": "Respond to customer support tickets",
+    "Description": "Address and resolve customer support tickets in a timely manner",
+    "CreationDate": "2024-01-26T03:53:15.0729373+03:30",
+    "Deadline": "2024-01-28T03:53:15.0729372+03:30",
+    "Priority": 1
+  },
+  {
+    "Id": 18,
+    "Title": "Collaborate with cross-functional teams",
+    "Description": "Engage with teams from different departments to align on project goals",
+    "CreationDate": "2024-01-26T03:53:15.0729378+03:30",
+    "Deadline": "2024-02-04T03:53:15.0729376+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 19,
+    "Title": "Update project budget",
+    "Description": "Review and update the project budget based on current expenses and projections",
+    "CreationDate": "2024-01-26T03:53:15.0729382+03:30",
+    "Deadline": "2024-02-03T03:53:15.0729381+03:30",
+    "Priority": 2
+  },
+  {
+    "Id": 20,
+    "Title": "Brainstorm new product features",
+    "Description": "Facilitate a brainstorming session for innovative product features",
+    "CreationDate": "2024-01-26T03:53:15.0729384+03:30",
+    "Deadline": "2024-02-01T03:53:15.0729383+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 21,
+    "Title": "Review and update security protocols",
+    "Description": "Evaluate and enhance security protocols to protect sensitive data",
+    "CreationDate": "2024-01-26T03:53:15.0729388+03:30",
+    "Deadline": "2024-01-30T03:53:15.0729385+03:30",
+    "Priority": 2
+  },
+  {
+    "Id": 22,
+    "Title": "Coordinate team social event",
+    "Description": "Plan and organize a social event to foster team camaraderie",
+    "CreationDate": "2024-01-26T03:53:15.0729392+03:30",
+    "Deadline": "2024-02-06T03:53:15.0729389+03:30",
+    "Priority": 4
+  },
+  {
+    "Id": 23,
+    "Title": "Research and propose process improvements",
+    "Description": "Identify areas for process improvement and propose solutions",
+    "CreationDate": "2024-01-26T03:53:15.0729396+03:30",
+    "Deadline": "2024-02-02T03:53:15.0729394+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 24,
+    "Title": "Update project status report",
+    "Description": "Compile and update the project status report for stakeholders",
+    "CreationDate": "2024-01-26T03:53:15.0729399+03:30",
+    "Deadline": "2024-01-31T03:53:15.0729397+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 25,
+    "Title": "Conduct competitor analysis",
+    "Description": "Research and analyze competitors to inform strategic decision-making",
+    "CreationDate": "2024-01-26T03:53:15.0729401+03:30",
+    "Deadline": "2024-02-03T03:53:15.07294+03:30",
+    "Priority": 2
+  },
+  {
+    "Id": 26,
+    "Title": "Coordinate team training",
+    "Description": "Organize a training session to enhance the team\u0027s skills and knowledge",
+    "CreationDate": "2024-01-26T03:53:15.0729404+03:30",
+    "Deadline": "2024-02-05T03:53:15.0729402+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 27,
+    "Title": "Plan client workshop",
+    "Description": "Develop an agenda and materials for an upcoming workshop with a client",
+    "CreationDate": "2024-01-26T03:53:15.0729406+03:30",
+    "Deadline": "2024-01-29T03:53:15.0729405+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 28,
+    "Title": "Evaluate project risks",
+    "Description": "Assess potential project risks and develop mitigation strategies",
+    "CreationDate": "2024-01-26T03:53:15.0729409+03:30",
+    "Deadline": "2024-02-04T03:53:15.0729407+03:30",
+    "Priority": 2
+  },
+  {
+    "Id": 29,
+    "Title": "Update website content",
+    "Description": "Review and update content on the company website for accuracy and relevance",
+    "CreationDate": "2024-01-26T03:53:15.0729411+03:30",
+    "Deadline": "2024-02-01T03:53:15.072941+03:30",
+    "Priority": 3
+  },
+  {
+    "Id": 30,
+    "Title": "Collaborate on cross-functional project",
+    "Description": "Work closely with teams from various departments on a collaborative project",
+    "CreationDate": "2024-01-26T03:53:15.0729413+03:30",
+    "Deadline": "2024-02-07T03:53:15.0729412+03:30",
+    "Priority": 2
+  },
+  {
+    "Id": 31,
+    "Title": "Respond to media inquiry",
+    "Description": "Address and respond to a media inquiry regarding recent company developments",
+    "CreationDate": "2024-01-26T03:53:15.0729417+03:30",
+    "Deadline": "2024-01-28T03:53:15.0729416+03:30",
+    "Priority": 1
+  },
+  {
+    "Id": 32,
+    "Title": "Evaluate project performance metrics",
+    "Description": "Analyze project performance metrics to identify areas for improvement",
+    "CreationDate": "2024-01-26T03:53:15.0729419+03:30",
+    "Deadline": "2024-01-30T03:53:15.0729418+03:30",
+    "Priority": 1
+  },
+  {
+    "Id": 33,
+    "Title": "Organize team-building workshop",
+    "Description": "Coordinate a workshop to strengthen teamwork and communication within the team",
+    "CreationDate": "2024-01-26T03:53:15.0729422+03:30",
+    "Deadline": "2024-01-31T03:53:15.072942+03:30",
+    "Priority": 4
+  },
+  {
+    "Id": 34,
+    "Title": "Research and propose technology upgrades",
+    "Description": "Explore potential technology upgrades to enhance system performance",
+    "CreationDate": "2024-01-26T03:53:15.0729426+03:30",
+    "Deadline": "2024-02-02T03:53:15.0729424+03:30",
+    "Priority": 2
+  }
+]
