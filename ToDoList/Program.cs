@@ -1,6 +1,9 @@
 ﻿using ToDoList.Models;
 using ToDoList.Models.Enums;
 using Task = ToDoList.Models.Task;
+using System.Text.Json;
+
+// test main functionality ----------------------------------
 
 Task task1 = new("AA task", "a task with same deadline and priority as task 2 and different creation date", DateTime.Now.AddDays(2), Priority.LowPriority);
 Task task2 = new("A task", "another task with same deadline as task 3 and less priority", DateTime.Now.AddDays(2), Priority.LowPriority);
@@ -20,9 +23,43 @@ myList.AddTask(task6);
 
 Console.WriteLine(myList.ToString());
 
-Console.WriteLine("After Sorting:n");
+Console.WriteLine("After Sorting:\n");
 
 Console.WriteLine(myList.GetSortedString());
 
 myList.DoTask(task2);
 myList.RemoveTask(task3);
+
+// test reading from file ----------------------------------
+
+List<Task> tasks = ReadFile("./tasksss.json");
+
+// do all tasks
+foreach (Task task in tasks)
+    myList.DoTask(task);
+
+// add new tasks (read from file)
+foreach (Task task in tasks)
+    myList.AddTask(task);
+
+// comment out these lines
+// and comment previos prints
+// to see the result.
+
+//Console.WriteLine(myList.ToString());
+//Console.WriteLine("After Sorting:\n");
+//Console.WriteLine(myList.GetSortedString());
+
+static List<Task> ReadFile(string path)
+{
+    if (File.Exists(path))
+    {
+        string json = File.ReadAllText(path);
+        var tasks = JsonSerializer.Deserialize<List<Task>>(json);
+        return tasks;
+    }
+    else
+    {
+        throw new Exception("file not found!");
+    }
+}
