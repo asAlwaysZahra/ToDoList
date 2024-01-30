@@ -4,10 +4,10 @@ using Task = ToDoList.Models.Task;
 using System.Text.Json;
 
 // test main functionality ----------------------------------
-Test();
+// Test();
 
 // test reading from file ----------------------------------
-TestReadingFile("./tasksss.json");
+// TestReadingFile("./tasksss.json");
 
 static List<Task> ReadFile(string path)
 {

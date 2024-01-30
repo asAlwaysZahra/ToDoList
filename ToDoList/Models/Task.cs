@@ -10,6 +10,7 @@ public class Task : IComparable<Task>
     public DateTime CreationDate { get; set; }
     public DateTime Deadline { get; set; }
     public Priority Priority { get; set; }
+    public bool Done { get; set; }
 
     public Task(string title, string description, DateTime deadline, Priority priority)
     {
@@ -19,6 +20,7 @@ public class Task : IComparable<Task>
         CreationDate = DateTime.Now;
         Deadline = deadline;
         Priority = priority;
+        Done = false;
     }
 
     public int CompareTo(Task? other)

@@ -8,13 +8,11 @@ internal class TheList
     protected static int _counter = 1;
     public int Id { get; set; }
     public List<Task> Tasks { get; set; }
-    public List<Task> Done { get; set; }
 
     public TheList()
     {
         Id = _counter++;
         Tasks = new List<Task>();
-        Done = new List<Task>();
     }
 
     public void AddTask(Task task) => Tasks.Add(task);
@@ -23,15 +21,24 @@ internal class TheList
 
     public void DoTask(Task task)
     {
-        Tasks.Remove(task);
-        Done.Add(task);
+        task.Done = true;
     }
 
     public List<Task> SortTasks()
     {
-        List<Task> sorted = new List<Task>(Tasks);
+        List<Task> sorted = new List<Task>(GetUndoneTasks());
         sorted.Sort();
         return sorted;
+    }
+
+    public List<Task> GetCompletedTasks()
+    {
+        return Tasks.FindAll(t => t.Done).ToList();
+    }
+
+    public List<Task> GetUndoneTasks()
+    {
+        return Tasks.FindAll(t => t.Done == false).ToList();
     }
 
     public string GetSortedString()
