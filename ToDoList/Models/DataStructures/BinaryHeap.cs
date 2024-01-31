@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ToDoList.Models.DataStructures;
+﻿namespace ToDoList.Models.DataStructures;
 
 public abstract class BinaryHeap<T> where T : IComparable<T>
 {
