@@ -11,6 +11,7 @@ public class Task : IComparable<Task>
     public DateTime Deadline { get; set; }
     public Priority Priority { get; set; }
     public bool Done { get; set; }
+    public DateTime DoneAt { get; set; }
 
     public Task(string title, string description, DateTime deadline, Priority priority)
     {

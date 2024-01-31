@@ -22,6 +22,7 @@ internal class TheList
     public void DoTask(Task task)
     {
         task.Done = true;
+        task.DoneAt = DateTime.Now;
     }
 
     public List<Task> SortTasks()
