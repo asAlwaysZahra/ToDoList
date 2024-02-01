@@ -28,7 +28,7 @@ public abstract class BinaryHeap<T> where T : IComparable<T>
         }
     }
 
-    public T ExtractMax()
+    public T Extract()
     {
         var max = heap[0];
         heap[0] = heap[Count - 1];
@@ -42,7 +42,7 @@ public abstract class BinaryHeap<T> where T : IComparable<T>
         return max;
     }
 
-    public T PeekMax()
+    public T Peek()
     {
         var max = heap[0];
 
