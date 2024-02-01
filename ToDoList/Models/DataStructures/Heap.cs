@@ -108,4 +108,19 @@ public class Heap<T>
         _data[i] = _data[j];
         _data[j] = temp;
     }
+
+    public List<T> HeapSort()
+    {
+        Heap<T> copy = new Heap<T>(comp);
+        copy.Insert(_data);
+
+        List<T> sortedList = new List<T>();
+
+        while (copy.Count > 0)
+        {
+            sortedList.Add(copy.ExtractRoot());
+        }
+
+        return sortedList;
+    }
 }
