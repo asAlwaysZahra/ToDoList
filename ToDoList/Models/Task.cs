@@ -55,5 +55,5 @@ public class Task : IComparable<Task>
     }
 
     public override string ToString()
-        => $"{Id} | {Priority} | {Title} | Due: {Deadline}\n  - {Description}\n    Created at: {CreationDate}";
+        => $"\n{Id} | {Priority} | {Title} | Due: {Deadline}\n  - {Description}\n    Created at: {CreationDate}\n";
 }

@@ -17,6 +17,8 @@ internal class TheList
 
     public void AddTask(Task task) => Tasks.Add(task);
 
+    public void AddTask(IEnumerable<Task> tasks) => Tasks.AddRange(tasks);
+
     public void RemoveTask(Task task) => Tasks.Remove(task);
 
     public void DoTask(Task task)
@@ -25,9 +27,16 @@ internal class TheList
         task.DoneAt = DateTime.Now;
     }
 
-    public List<Task> SortTasks()
+    public List<Task> SortUndoneTasks()
     {
         List<Task> sorted = new List<Task>(GetUndoneTasks());
+        sorted.Sort();
+        return sorted;
+    }
+
+    public List<Task> SortAllTasks()
+    {
+        List<Task> sorted = new List<Task>(Tasks);
         sorted.Sort();
         return sorted;
     }
@@ -44,7 +53,7 @@ internal class TheList
 
     public string GetSortedString()
     {
-        List<Task> sorted = SortTasks();
+        List<Task> sorted = SortUndoneTasks();
         StringBuilder sb = new StringBuilder();
 
         foreach (var task in sorted)
