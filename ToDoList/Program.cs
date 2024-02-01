@@ -28,10 +28,11 @@ Console.WriteLine("max in integer list: " + maxHeap.Peek());
 MaxHeap<Task> maxHeap2 = (MaxHeap<Task>)list.Tasks.ToHeap(new MyTaskComparer(), true);
 MinHeap<Task> minHeap = (MinHeap<Task>)list.Tasks.ToHeap(new MyTaskComparer(), false);
 
-Console.WriteLine("most important list: " + maxHeap.Peek());
-Console.WriteLine("most important list: " + maxHeap.Peek());
+Console.WriteLine("most important task: " + maxHeap.Peek());
+Console.WriteLine("least important task: " + minHeap.Peek());
 
 // test sort tasks using heap sort - practice 2 -------------
+Console.WriteLine("after heap sort:");
 maxHeap.Sort();
 foreach (var item in list.Tasks) Console.WriteLine(item); 
 
