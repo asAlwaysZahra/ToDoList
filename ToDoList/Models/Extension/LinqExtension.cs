@@ -4,24 +4,10 @@ namespace ToDoList.Models.Extension;
 
 public static class LinqExtension
 {
-    public static BinaryHeap<T> ToHeap<T>(this IEnumerable<T> collection, IComparer<T> comp, bool isMax)
+    public static Heap<T> ToHeap<T>(this IEnumerable<T> collection, IComparer<T> comparer)
     {
-        BinaryHeap<T> heap;
-
-        if (isMax)
-        {
-            heap = new MaxHeap<T>(comp);
-        }
-        else
-        {
-            heap = new MinHeap<T>(comp);
-        }
-
-        foreach (var item in collection)
-        {
-            heap.Insert(item);
-        }
-
+        Heap<T> heap = new Heap<T>(comparer);
+        heap.Insert(collection);
         return heap;
     }
 }
