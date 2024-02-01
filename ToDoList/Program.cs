@@ -2,27 +2,38 @@
 using ToDoList.Models.Enums;
 using ToDoList.Models.DataStructures;
 using Task = ToDoList.Models.Task;
-using System.Text.Json;
-using System.Runtime;
 using ToDoList.Data;
+using ToDoList.Models.Extension;
 
 // test main functionality - practice 1 ---------------------
 //TheList lst = Test();
 
 
-// test reading from file  - practice 1 ---------------------
-//TheList lst = TestReadingFile("./tasksss.json");
+// test reading from file - practice 1 ----------------------
+TheList list = TestReadingFile("./tasksss.json");
 
 
 // test linq - practice 2 -----------------------------------
 TestLinq();
 
-//BinaryHeap<Task> heap = new MinHeap<Task>();
-//foreach (var item in lst.Tasks)
-//    heap.Insert(item);
 
-//Console.WriteLine("hiiiiii : "+heap.ExtractMax());
+// test heap - practice 2 -----------------------------------
+List<int> data = new List<int>() { 1, 0, 2, 5, 3, 4 };
 
+MaxHeap<int> maxHeap = (MaxHeap<int>)data.ToHeap(Comparer<int>.Default, true);
+
+Console.WriteLine("max in integer list: " + maxHeap.Peek());
+
+// test get most important tasks - practice 2 ---------------
+MaxHeap<Task> maxHeap2 = (MaxHeap<Task>)list.Tasks.ToHeap(new MyTaskComparer(), true);
+MinHeap<Task> minHeap = (MinHeap<Task>)list.Tasks.ToHeap(new MyTaskComparer(), false);
+
+Console.WriteLine("most important list: " + maxHeap.Peek());
+Console.WriteLine("most important list: " + maxHeap.Peek());
+
+// test sort tasks using heap sort - practice 2 -------------
+maxHeap.Sort();
+foreach (var item in list.Tasks) Console.WriteLine(item); 
 
 static TheList SampleTasks()
 {
@@ -142,5 +153,15 @@ static void TestLinq()
     foreach (Priority pr in Enum.GetValues<Priority>())
     {
         Console.WriteLine(pr.ToString() + " -> " + list.Tasks.Where(t => t.Priority == pr && !t.Done).Count());
+    }
+}
+
+class MyTaskComparer : IComparer<Task>
+{
+    public int Compare(Task? x, Task? y)
+    {
+        if (x == null || y == null) return 1;
+
+        return x.CompareTo(y);
     }
 }

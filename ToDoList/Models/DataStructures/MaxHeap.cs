@@ -1,19 +1,23 @@
 ﻿namespace ToDoList.Models.DataStructures;
 
-public class MaxHeap<T> : BinaryHeap<T> where T : IComparable<T>
+public class MaxHeap<T> : BinaryHeap<T>
 {
+    public MaxHeap(IComparer<T> comp, T[]? elements = null) : base(comp, elements)
+    {
+    }
+
     protected override void HeapifyDown(int i)
     {
         var leftChild = (i * 2) + 1;
         var rightChild = (i * 2) + 2;
         var biggest = i;
 
-        if (leftChild < Count && heap[leftChild].CompareTo(heap[biggest]) < 0)
+        if (leftChild < Count && comp.Compare(heap[leftChild], heap[biggest]) < 0)
         {
             biggest = leftChild;
         }
 
-        if (rightChild < Count && heap[rightChild].CompareTo(heap[biggest]) < 0)
+        if (rightChild < Count && comp.Compare(heap[rightChild], heap[biggest]) < 0)
         {
             biggest = rightChild;
         }
@@ -32,7 +36,7 @@ public class MaxHeap<T> : BinaryHeap<T> where T : IComparable<T>
         // first non-leaf node
         var parent = (i - 1) / 2;
 
-        while (i > 0 && heap[i].CompareTo(heap[parent]) < 0)
+        while (i > 0 && comp.Compare(heap[i], heap[parent]) < 0)
         {
             // swap
             (heap[i], heap[parent]) = (heap[parent], heap[i]);
