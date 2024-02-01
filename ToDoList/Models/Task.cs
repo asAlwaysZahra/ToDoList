@@ -13,10 +13,11 @@ public class Task : IComparable<Task>
     public Priority Priority { get; set; }
     public bool Done { get; set; }
     public DateTime DoneAt { get; set; }
+    public string Category { get; set; }
 
     [JsonConstructor]
-    public Task(int id, string title, string description, DateTime creationDate, 
-        DateTime deadline, Priority priority, bool done, DateTime doneAt)
+    public Task(int id, string title, string description, DateTime creationDate,
+        DateTime deadline, Priority priority, bool done, DateTime doneAt, string category)
     {
         Id = id;
         Title = title;
@@ -26,6 +27,7 @@ public class Task : IComparable<Task>
         Priority = priority;
         Done = done;
         DoneAt = doneAt;
+        Category = category;
     }
 
     public Task(string title, string description, DateTime deadline, Priority priority)
@@ -37,6 +39,7 @@ public class Task : IComparable<Task>
         Deadline = deadline;
         Priority = priority;
         Done = false;
+        Category = "Work";
     }
 
     public int CompareTo(Task? other)
@@ -55,5 +58,6 @@ public class Task : IComparable<Task>
     }
 
     public override string ToString()
-        => $"\n{Id} | {Priority} | {Title} | Due: {Deadline}\n  - {Description}\n    Created at: {CreationDate}\n";
+        => $"\n{Id} | {Priority} | {Title} | Due: {Deadline}\n  - {Description}\n" +
+           $"    Created at: {CreationDate}\n  Group: {Category}\n";
 }
