@@ -2,13 +2,13 @@
 
 public abstract class BinaryHeap<T> where T : IComparable<T>
 {
-    protected IList<T> _heap;
+    protected IList<T> heap;
 
     public BinaryHeap(T[]? elements = null)
     {
         if (elements != null)
         {
-            _heap = new List<T>(elements);
+            heap = new List<T>(elements);
             for (int i = elements.Length / 2; i >= 0; i--)
             {
                 HeapifyDown(i);
@@ -16,7 +16,7 @@ public abstract class BinaryHeap<T> where T : IComparable<T>
         }
         else
         {
-            _heap = new List<T>();
+            heap = new List<T>();
         }
     }
 
@@ -24,15 +24,15 @@ public abstract class BinaryHeap<T> where T : IComparable<T>
     {
         get
         {
-            return _heap.Count;
+            return heap.Count;
         }
     }
 
     public T ExtractMax()
     {
-        var max = _heap[0];
-        _heap[0] = _heap[Count - 1];
-        _heap.RemoveAt(Count - 1);
+        var max = heap[0];
+        heap[0] = heap[Count - 1];
+        heap.RemoveAt(Count - 1);
 
         if (Count > 0)
         {
@@ -44,14 +44,14 @@ public abstract class BinaryHeap<T> where T : IComparable<T>
 
     public T PeekMax()
     {
-        var max = _heap[0];
+        var max = heap[0];
 
         return max;
     }
 
     public void Insert(T node)
     {
-        _heap.Add(node);
+        heap.Add(node);
 
         HeapifyUp(Count - 1);
     }

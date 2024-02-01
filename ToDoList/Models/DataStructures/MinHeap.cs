@@ -8,12 +8,12 @@ public class MinHeap<T> : BinaryHeap<T> where T : IComparable<T>
         var rightChild = (i * 2) + 2;
         var biggest = i;
 
-        if (leftChild < Count && _heap[leftChild].CompareTo(_heap[biggest]) > 0)
+        if (leftChild < Count && heap[leftChild].CompareTo(heap[biggest]) > 0)
         {
             biggest = leftChild;
         }
 
-        if (rightChild < Count && _heap[rightChild].CompareTo(_heap[biggest]) > 0)
+        if (rightChild < Count && heap[rightChild].CompareTo(heap[biggest]) > 0)
         {
             biggest = rightChild;
         }
@@ -21,7 +21,7 @@ public class MinHeap<T> : BinaryHeap<T> where T : IComparable<T>
         if (biggest != i)
         {
             // swap them
-            (_heap[biggest], _heap[i]) = (_heap[i], _heap[biggest]);
+            (heap[biggest], heap[i]) = (heap[i], heap[biggest]);
 
             HeapifyDown(biggest);
         }
@@ -32,10 +32,10 @@ public class MinHeap<T> : BinaryHeap<T> where T : IComparable<T>
         // first non-leaf node
         var parent = (i - 1) / 2;
 
-        while (i > 0 && _heap[i].CompareTo(_heap[parent]) > 0)
+        while (i > 0 && heap[i].CompareTo(heap[parent]) > 0)
         {
             // swap
-            (_heap[i], _heap[parent]) = (_heap[parent], _heap[i]);
+            (heap[i], heap[parent]) = (heap[parent], heap[i]);
 
             i = parent;
 
