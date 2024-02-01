@@ -5,36 +5,35 @@ using Task = ToDoList.Models.Task;
 using ToDoList.Data;
 using ToDoList.Models.Extension;
 
-// test main functionality - practice 1 ---------------------
+
+// test main functionality - E01 ------------------------
 //TheList lst = Test();
 
 
-// test reading from file - practice 1 ----------------------
+// test reading from file - E01 -------------------------
 TheList list = TestReadingFile("./tasksss.json");
+Console.WriteLine(list);
 
 
-// test linq - practice 2 -----------------------------------
-TestLinq();
+// get all tasks sorted - E01 ---------------------------
+TheList sortedList = new TheList() { Tasks = list.SortAllTasks() };
+Console.WriteLine("\n------ Sorted List ------\n");
+Console.WriteLine(sortedList);
 
 
-// test heap - practice 2 -----------------------------------
-List<int> data = new List<int>() { 1, 0, 2, 5, 3, 4 };
+// E02: Comment these lines one by one to see the result :)
 
-MaxHeap<int> maxHeap = (MaxHeap<int>)data.ToHeap(Comparer<int>.Default, true);
+// test linq - E02 --------------------------------------
+//TestLinq();
 
-Console.WriteLine("max in integer list: " + maxHeap.Peek());
 
-// test get most important tasks - practice 2 ---------------
-MaxHeap<Task> maxHeap2 = (MaxHeap<Task>)list.Tasks.ToHeap(new MyTaskComparer(), true);
-MinHeap<Task> minHeap = (MinHeap<Task>)list.Tasks.ToHeap(new MyTaskComparer(), false);
+// test heap extension method on int data - E02 ---------
+//TestHeapOnIntData();
 
-Console.WriteLine("most important task: " + maxHeap.Peek());
-Console.WriteLine("least important task: " + minHeap.Peek());
 
-// test sort tasks using heap sort - practice 2 -------------
-Console.WriteLine("after heap sort:");
-maxHeap.Sort();
-foreach (var item in list.Tasks) Console.WriteLine(item); 
+// create heap and sort tasks using heap sort - E02 -----
+//TestHeapOnTasks(list);
+
 
 static TheList SampleTasks()
 {
@@ -67,10 +66,6 @@ static TheList TestReadingFile(string path)
     // add new tasks that has been read from file
     foreach (Task task in tasks)
         myList.AddTask(task);
-
-    Console.WriteLine(myList.ToString());
-    Console.WriteLine("After Sorting:\n");
-    Console.WriteLine(myList.GetSortedString());
 
     return myList;
 }
@@ -114,25 +109,25 @@ static void TestLinq()
     TheList list = GetFileList("tasksss.json");
 
     // Q1
-    Console.WriteLine("Q1: " + list.Tasks.Count());
+    Console.WriteLine("--Q1: " + list.Tasks.Count());
 
     // Q2
-    Console.WriteLine("Q2: " + list.Tasks.Where(t => t.Done).Count());
+    Console.WriteLine("--Q2: " + list.Tasks.Where(t => t.Done).Count());
 
     // Q3
     DateTime t1 = DateTime.Parse("2024-08-01T00:00:00");
     DateTime t2 = DateTime.Parse("2024-10-01T00:00:00");
     // ans: 16 - 1
-    Console.WriteLine("Q3: " + list.Tasks.Where(t => t.DoneAt.CompareTo(t1) > 0 && t.DoneAt.CompareTo(t2) < 0).Count());
+    Console.WriteLine("--Q3: " + list.Tasks.Where(t => t.DoneAt.CompareTo(t1) > 0 && t.DoneAt.CompareTo(t2) < 0).Count());
 
     // Q4
-    Console.WriteLine("Q4: " + list.Tasks.Where(t => t.Done == false).Count());
+    Console.WriteLine("--Q4: " + list.Tasks.Where(t => t.Done == false).Count());
 
     // Q5
-    Console.WriteLine("Q5: " + list.Tasks.Where(t => t.Deadline.CompareTo(DateTime.Now) < 0).Count());
+    Console.WriteLine("--Q5: " + list.Tasks.Where(t => t.Deadline.CompareTo(DateTime.Now) < 0).Count());
 
     // Q6
-    Console.Write("Q6: ");
+    Console.Write("--Q6: ");
     List<int> res = list.Tasks.Where(t => (DateTime.Now - t.CreationDate).TotalDays > 5 && !t.Done)
                           .OrderByDescending(t => t.CreationDate)
                           .Select(t => t.Id)
@@ -141,7 +136,7 @@ static void TestLinq()
     Console.WriteLine();
 
     // Q7
-    Console.Write("Q7: ");
+    Console.Write("--Q7: ");
     res = list.Tasks.Where(t => (t.DoneAt.DayOfYear == t.CreationDate.DayOfYear && t.Done))
                           .OrderByDescending(t => t.CreationDate)
                           .Select(t => t.Id)
@@ -150,19 +145,39 @@ static void TestLinq()
     Console.WriteLine();
 
     // Q8
-    Console.WriteLine("Q8: ");
+    Console.WriteLine("--Q8: ");
     foreach (Priority pr in Enum.GetValues<Priority>())
     {
-        Console.WriteLine(pr.ToString() + " -> " + list.Tasks.Where(t => t.Priority == pr && !t.Done).Count());
+        Console.WriteLine("      " + pr.ToString() + " -> " + list.Tasks.Where(t => t.Priority == pr && !t.Done).Count());
     }
+
+    Console.WriteLine("\n-------------------------\n");
 }
 
-class MyTaskComparer : IComparer<Task>
+static void TestHeapOnIntData()
 {
-    public int Compare(Task? x, Task? y)
-    {
-        if (x == null || y == null) return 1;
+    List<int> data = new List<int>() { 1, 2, 5, 3, 4, 6, 9, 7, 8 };
 
-        return x.CompareTo(y);
-    }
+    Heap<int> intMaxHeap = data.ToHeap<int>(Comparer<int>.Create((a, b) => b.CompareTo(a)));
+    Heap<int> intMinHeap = data.ToHeap<int>(Comparer<int>.Default);
+
+    Console.WriteLine("- max of integer data: " + intMaxHeap.ExtractRoot());
+    Console.WriteLine("- min of integer data: " + intMinHeap.ExtractRoot());
+    Console.WriteLine("\n-------------------------\n");
+}
+
+static void TestHeapOnTasks(TheList list)
+{
+    Heap<Task> maxHeap = list.Tasks.ToHeap<Task>(Comparer<Task>.Create((a, b) => a.CompareTo(b)));
+    Heap<Task> minHeap = list.Tasks.ToHeap<Task>(Comparer<Task>.Create((a, b) => b.CompareTo(a)));
+
+    List<Task> sorted = maxHeap.HeapSort();
+    Console.WriteLine("---- after heap sort ----");
+    foreach (var item in sorted)
+        Console.WriteLine(item);
+
+
+    // test get most important tasks - E02 ---------------
+    Console.WriteLine("--- most important task ---\n" + maxHeap.Peek());
+    Console.WriteLine("--- least important task ---\n" + minHeap.Peek());
 }
