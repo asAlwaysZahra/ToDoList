@@ -1,31 +1,28 @@
 ﻿using ToDoList.Models;
 using ToDoList.Models.Enums;
+using ToDoList.Models.DataStructures;
 using Task = ToDoList.Models.Task;
 using System.Text.Json;
+using System.Runtime;
+using ToDoList.Data;
 
-// test main functionality ----------------------------------
-// Test();
+// test main functionality - practice 1 ---------------------
+//TheList lst = Test();
 
-// test reading from file ----------------------------------
-// TestReadingFile("./tasksss.json");
 
-static List<Task> ReadFile(string path)
-{
-    if (File.Exists(path))
-    {
-        string json = File.ReadAllText(path);
-        var tasks = JsonSerializer.Deserialize<List<Task>>(json);
+// test reading from file  - practice 1 ---------------------
+//TheList lst = TestReadingFile("./tasksss.json");
 
-        if (tasks == null)
-            throw new ArgumentException("The path provided does not contain any data!");
 
-        return tasks;
-    }
-    else
-    {
-        throw new Exception("file not found!");
-    }
-}
+// test linq - practice 2 -----------------------------------
+TestLinq();
+
+//BinaryHeap<Task> heap = new MinHeap<Task>();
+//foreach (var item in lst.Tasks)
+//    heap.Insert(item);
+
+//Console.WriteLine("hiiiiii : "+heap.ExtractMax());
+
 
 static TheList SampleTasks()
 {
@@ -48,27 +45,25 @@ static TheList SampleTasks()
     return myList;
 }
 
-static void TestReadingFile(string path)
+static TheList TestReadingFile(string path)
 {
-    List<Task> tasks = ReadFile(path);
+    IFileReader<Task> reader = new JsonFileReader<Task>();
+
+    List<Task> tasks = reader.ReadFile(path);
     TheList myList = new();
 
-    // add new tasks (read from file)
+    // add new tasks that has been read from file
     foreach (Task task in tasks)
         myList.AddTask(task);
 
     Console.WriteLine(myList.ToString());
-
     Console.WriteLine("After Sorting:\n");
-
     Console.WriteLine(myList.GetSortedString());
 
-    // do all tasks :|
-    foreach (Task task in tasks)
-        myList.DoTask(task);
+    return myList;
 }
 
-static void Test()
+static TheList Test()
 {
     TheList myList = SampleTasks();
 
@@ -81,4 +76,71 @@ static void Test()
     // test methods
     myList.DoTask(myList.Tasks[1]);
     myList.RemoveTask(myList.Tasks[2]);
+
+    return myList;
+}
+
+static TheList GetFileList(string relativePath)
+{
+    string currentDirectory = Directory.GetCurrentDirectory();
+
+    string fullPath = Path.Combine(currentDirectory, relativePath);
+
+    JsonFileReader<Task> reader = new JsonFileReader<Task>();
+    List<Task> tasks = reader.ReadFile(fullPath);
+
+    TheList list = new TheList();
+
+    for (int i = 0; i < tasks.Count; i++)
+        list.AddTask(tasks[i]);
+
+    return list;
+}
+
+static void TestLinq()
+{
+    TheList list = GetFileList("tasksss.json");
+
+    // Q1
+    Console.WriteLine("Q1: " + list.Tasks.Count());
+
+    // Q2
+    Console.WriteLine("Q2: " + list.Tasks.Where(t => t.Done).Count());
+
+    // Q3
+    DateTime t1 = DateTime.Parse("2024-08-01T00:00:00");
+    DateTime t2 = DateTime.Parse("2024-10-01T00:00:00");
+    // ans: 16 - 1
+    Console.WriteLine("Q3: " + list.Tasks.Where(t => t.DoneAt.CompareTo(t1) > 0 && t.DoneAt.CompareTo(t2) < 0).Count());
+
+    // Q4
+    Console.WriteLine("Q4: " + list.Tasks.Where(t => t.Done == false).Count());
+
+    // Q5
+    Console.WriteLine("Q5: " + list.Tasks.Where(t => t.Deadline.CompareTo(DateTime.Now) < 0).Count());
+
+    // Q6
+    Console.Write("Q6: ");
+    List<int> res = list.Tasks.Where(t => (DateTime.Now - t.CreationDate).TotalDays > 5 && !t.Done)
+                          .OrderByDescending(t => t.CreationDate)
+                          .Select(t => t.Id)
+                          .ToList();
+    for (int i = 0; i < Math.Min(3, res.Count); i++) Console.Write(res[i] + " - ");
+    Console.WriteLine();
+
+    // Q7
+    Console.Write("Q7: ");
+    res = list.Tasks.Where(t => (t.DoneAt.DayOfYear == t.CreationDate.DayOfYear && t.Done))
+                          .OrderByDescending(t => t.CreationDate)
+                          .Select(t => t.Id)
+                          .ToList();
+    for (int i = 0; i < Math.Min(3, res.Count); i++) Console.Write(res[i] + " - ");
+    Console.WriteLine();
+
+    // Q8
+    Console.WriteLine("Q8: ");
+    foreach (Priority pr in Enum.GetValues<Priority>())
+    {
+        Console.WriteLine(pr.ToString() + " -> " + list.Tasks.Where(t => t.Priority == pr && !t.Done).Count());
+    }
 }

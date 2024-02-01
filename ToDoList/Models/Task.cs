@@ -1,4 +1,5 @@
-﻿using ToDoList.Models.Enums;
+﻿using System.Text.Json.Serialization;
+using ToDoList.Models.Enums;
 
 namespace ToDoList.Models;
 public class Task : IComparable<Task>
@@ -12,6 +13,20 @@ public class Task : IComparable<Task>
     public Priority Priority { get; set; }
     public bool Done { get; set; }
     public DateTime DoneAt { get; set; }
+
+    [JsonConstructor]
+    public Task(int id, string title, string description, DateTime creationDate, 
+        DateTime deadline, Priority priority, bool done, DateTime doneAt)
+    {
+        Id = id;
+        Title = title;
+        Description = description;
+        CreationDate = creationDate;
+        Deadline = deadline;
+        Priority = priority;
+        Done = done;
+        DoneAt = doneAt;
+    }
 
     public Task(string title, string description, DateTime deadline, Priority priority)
     {
@@ -39,6 +54,6 @@ public class Task : IComparable<Task>
         return CreationDate.CompareTo(other.CreationDate);
     }
 
-    public override string ToString() 
+    public override string ToString()
         => $"{Id} | {Priority} | {Title} | Due: {Deadline}\n  - {Description}\n    Created at: {CreationDate}";
 }
