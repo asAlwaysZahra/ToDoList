@@ -70,7 +70,7 @@ internal class TheList
 
         foreach (var task in Tasks)
         {
-            sb.Append(task.ToString()).Append("\n============\n");
+            sb.Append(task.ToString());
         }
 
         return sb.ToString();
