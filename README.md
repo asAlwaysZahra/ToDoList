@@ -86,6 +86,3 @@ ToDoList/
 - Change `Comparer<Task>` to flip between **max/min** perspective
 - Inspect the top element with `Peek()` to see current “most important” task
 - Call `HeapSort()` to get a fully ordered task list
-
-
-اگه دوست داری، می‌تونم همین فایل رو با اسم `README.md` داخل پروژه برات بذارم (یا نسخه‌ی فارسی هم کنارش آماده کنم).
