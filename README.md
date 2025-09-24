@@ -1,71 +1,91 @@
 # ToDoList
 
-A simple **To-Do list application** built as an internship project in C#.  
-It demonstrates the fundamentals of **task management, data persistence, and clean architecture**.
-
----
+A small C#/.NET console project that demonstrates **task modeling**, **JSON-based data loading**, and a generic **Heap** data structure for prioritizing tasks.
 
 ## 📌 Overview
-
-This project was developed as part of my internship to practice real-world software development.  
-The **ToDoList** app allows you to **add, edit, delete, and mark tasks as complete**.  
-It focuses on learning how to structure applications properly and apply key programming concepts.
-
----
+This app defines a `Task` domain model (comparable by **deadline → priority → creation date**), reads tasks from a JSON file via a simple file-reader abstraction, and shows how to rank/sort tasks using a **generic Heap** with pluggable comparers. It also includes a minimal LINQ helper to convert sequences into a heap.
 
 ## ✨ Key Features
+- **Task model (`Models/Task.cs`)**
+  - Properties: `Id`, `Title`, `Description`, `CreationDate`, `Deadline`, `Priority`, `Done`, `DoneAt`, `Category`
+  - Implements `IComparable<Task>`:
+    - Comparison order: earlier **Deadline** first → higher **Priority** first → earlier **CreationDate** first  
+    - `ToString()` prints a readable, multi-line representation
+- **Priority enum (`Models/Enums/Priority.cs`)**
+  - `Critical = 1`, `HighPriority`, `Neutral`, `LowPriority`, `Unknown`  
+  - Lower numeric value means **more important**
+- **Task list container (`Models/TheList.cs`)**
+  - Holds `List<Task>` and prints all tasks; (helper methods to add/remove are used in `Program`)
+- **Generic Heap (`Models/DataStructures/Heap.cs`)**
+  - Works with any `T` using an injected `IComparer<T>`
+  - Core ops: `Insert`, `ExtractRoot`, `Peek`, `Count`, plus `HeapSort()` (non-destructive: copies then drains)
+  - Supports building from an `IEnumerable<T>` (see extension below)
+- **LINQ extension (`Models/Extension/LinqExtension.cs`)**
+  - `ToHeap<T>(IEnumerable<T>, IComparer<T>)` to quickly build a heap from a sequence
+- **File reading abstraction (`Data/IFileReader.cs`, `Data/JsonFileReader.cs`)**
+  - `IFileReader<T>.ReadFile(string path)`
+  - `JsonFileReader<T>` uses `System.Text.Json` to deserialize `List<T>`
+  - Throws on missing file or null payload
+- **Sample data (`ToDoList/tasksss.json`)**
+  - A list of task objects with various priorities/dates/categories
+- **Program entry (`Program.cs`)**
+  - Shows:
+    - Reading tasks from JSON (`TestReadingFile`)
+    - Running simple LINQ/queries over tasks (`TestLinq`)
+    - Building **max/min heaps** for tasks and integers; printing **most/least important** tasks (`TestHeapOnTasks`, `TestHeapOnIntData`)
+  - Uses `AppDomain.CurrentDomain.BaseDirectory` to resolve the JSON path at runtime
 
-- **Task CRUD**: create, read, update, delete tasks  
-- **Mark complete/incomplete**: toggle task status  
-- **Persistence**: tasks stored locally (file/DB depending on implementation)  
-- **Layered design**: separation of UI, business logic, and data layer  
-- **Learning project**: built to strengthen C# and .NET development skills  
+## 🏗️ How Prioritization Works
+`Task.CompareTo(other)`:
+1) Compare by **Deadline** (earlier is higher priority)  
+2) If tie, compare by **Priority** (numerically smaller enum = more important)  
+3) If tie, compare by **CreationDate** (earlier created = more priority)
 
----
+Using this, you can build:
+- **Max-heap** (top = most important task) with `Comparer<Task>.Create((a, b) => a.CompareTo(b))`
+- **Min-heap** (top = least important task) with `Comparer<Task>.Create((a, b) => b.CompareTo(a))`
 
-## 🏗️ Concepts Learned
+`HeapSort()` drains a copied heap to return a sorted list according to the comparer.
 
-- Object-Oriented Programming (OOP) in practice  
-- Repository / data access patterns  
-- Handling user input and validations  
-- Project structure and clean code principles  
-- Basics of persistence (saving tasks for later use)  
-
----
-
-## ⚙️ Getting Started
-
+## 🚀 Getting Started
 ### Prerequisites
-- .NET SDK (6.0 / 7.0 / 8.0 depending on your environment)  
-- Visual Studio or VS Code  
+- .NET 8 SDK 
+- Visual Studio / VS Code
 
 ### Run
-1. Clone this repo:
-   ```bash
-   git clone https://github.com/asAlwaysZahra/ToDoList.git
-   ````
+1. Build the solution.
+2. Ensure `tasksss.json` is copied next to the built executable (the code resolves it from the **app’s base directory**).  
+   - In this repo it’s at: `ToDoList/tasksss.json`.
+3. Run the app. In `Program.cs` you can toggle tests:
+   - `TestReadingFile("tasksss.json");`
+   - `TestLinq("tasksss.json");`
+   - `TestHeapOnTasks(list);` / `TestHeapOnIntData();`
 
-2. Open solution in Visual Studio
-3. Build and run
-
----
-
-## 📂 Typical Structure
-
+## 📂 Project Layout
 ```
+
 ToDoList/
-├─ ToDoList/          # Main app (UI + logic)
-├─ ToDoList.Core/     # Domain models & interfaces
-├─ ToDoList.Data/     # Persistence layer
-└─ README.md
+├─ ToDoList.sln
+├─ ToDoList/
+│  ├─ Program.cs
+│  ├─ ToDoList.csproj
+│  ├─ tasksss.json
+│  ├─ Data/
+│  │  ├─ IFileReader.cs
+│  │  └─ JsonFileReader.cs
+│  └─ Models/
+│     ├─ Task.cs
+│     ├─ TheList.cs
+│     ├─ Enums/Priority.cs
+│     ├─ DataStructures/Heap.cs
+│     └─ Extension/LinqExtension.cs
+
 ```
 
----
+## 🧪 What to Try
+- Change `Comparer<Task>` to flip between **max/min** perspective
+- Inspect the top element with `Peek()` to see current “most important” task
+- Call `HeapSort()` to get a fully ordered task list
 
-## 🔮 Possible Improvements
 
-* Add task deadlines & priorities
-* Filtering & search (by status or date)
-* GUI instead of console (WPF/WinUI/Blazor)
-* Unit testing
-
+اگه دوست داری، می‌تونم همین فایل رو با اسم `README.md` داخل پروژه برات بذارم (یا نسخه‌ی فارسی هم کنارش آماده کنم).
